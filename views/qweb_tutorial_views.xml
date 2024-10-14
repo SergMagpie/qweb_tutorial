@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="view_form_qweb_tutorial" model="ir.ui.view">
+            <field name="name">qweb.tutorial.form</field>
+            <field name="model">qweb.tutorial</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_render_qweb" type="object" string="Render" class="oe_highlight"/>
+                        <button name="action_render_qweb_new_window" type="object" string="Render in New Window" class="oe_highlight"/>
+                    </header>
+                    <group>
+                        <group string="Odoo: на стороні коду">
+                            <notebook colspan="2">
+                                <page string="Лабораторія коду">
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="model_id"/>
+                                        <field name="domain"/>
+                                        <field name="record_limit"/>
+                                    </group>
+                                    <field name="template_code" widget="ace" options="{'mode':'xml'}"/>
+                                </page>
+                                <page string="Навчальні матеріали">
+                                    <field name="pdf_attachment_id" widget="pdf_viewer"/>
+                                </page>
+                                <page string="Обговорення">
+                                    <div class="oe_chatter">
+                                        <field name="message_follower_ids" groups="base.group_user"/>
+                                        <field name="activity_ids"/>
+                                        <field name="message_ids" widget="mail_thread"/>
+                                    </div>
+                                </page>
+                            </notebook>
+                        </group>
+                        <group string="Результат" >
+                            <notebook colspan="2">
+                                <page string="Render">
+                                    <field name="rendered_html" widget="html" readonly="1" nolabel="1"/>
+                                </page>
+                            </notebook>
+
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_qweb_tutorial" model="ir.ui.view">
+            <field name="name">qweb.tutorial.tree</field>
+            <field name="model">qweb.tutorial</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_qweb_tutorial" model="ir.actions.act_window">
+            <field name="name">QWeb Tutorials</field>
+            <field name="res_model">qweb.tutorial</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_qweb_tutorial" name="Odoo: на стороні коду"/>
+        <menuitem id="submenu_qweb_tutorial" name="Tutorials" parent="menu_qweb_tutorial" action="action_qweb_tutorial"/>
+    </data>
+</odoo>

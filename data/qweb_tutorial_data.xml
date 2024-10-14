@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+
+        <record id="qweb_part_1" model="qweb.tutorial">
+            <field name="name">QWEB. Статична частина.</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="template_code">
+                <![CDATA[
+<html>
+  <head>
+    <title>Запрошення на курси розробників Odoo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: auto;
+      }
+      h1 {
+        color: #333333;
+      }
+      p {
+        color: #666666;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Запрошення на курси розробників Odoo</h1>
+      <p>Шановний учаснику!</p>
+      <p>Запрошуємо вас приєднатися до наших курсів з розробки на платформі Odoo. Програма курсу включає основи програмування, створення модулів, роботу з базою даних та багато іншого.</p>
+      <p>Деталі курсу:</p>
+      <ul>
+        <li><strong>Дата початку:</strong> 1 вересня 2024</li>
+        <li><strong>Тривалість:</strong> 3 місяці</li>
+        <li><strong>Місце проведення:</strong> Онлайн</li>
+      </ul>
+      <p>Для реєстрації, будь ласка, натисніть на кнопку нижче:</p>
+      <a href="https://odoo.school/" class="button">Зареєструватися</a>
+      <p>З нетерпінням чекаємо на вас!</p>
+      <p>З повагою,<br/>Команда Odoo.School</p>
+    </div>
+  </body>
+</html>
+                ]]>
+            </field>
+            <field name="domain">[]</field>
+            <field name="record_limit">10</field>
+        </record>
+
+        <record id="qweb_part_2" model="qweb.tutorial">
+            <field name="name">QWEB. Динамічна частина. 1</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="template_code">
+                <![CDATA[
+<p><t t-esc="docs"/></p>
+                ]]>
+            </field>
+            <field name="domain">[]</field>
+            <field name="record_limit">10</field>
+        </record>
+
+
+        <record id="pdf_1" model="ir.attachment">
+            <field name="name">QWEB_Статична_частина.pdf</field>
+            <field name="datas" type="base64" file="qweb_tutorial/static/src/pdf/QWEB_Статична_частина.pdf"/>
+            <field name="mimetype">application/pdf</field>
+            <field name="res_model">qweb.tutorial</field>
+            <field name="res_id" ref="qweb_tutorial.qweb_part_1"/>
+            <field name="res_field">pdf_attachment_id</field>
+            <field name="type">binary</field>
+        </record>
+
+        <record id="pdf_2" model="ir.attachment">
+            <field name="name">QWEB_Динамічна_частина_1.pdf</field>
+            <field name="datas" type="base64" file="qweb_tutorial/static/src/pdf/QWEB_Динамічна_частина_1.pdf"/>
+            <field name="mimetype">application/pdf</field>
+            <field name="res_model">qweb.tutorial</field>
+            <field name="res_id" ref="qweb_tutorial.qweb_part_2"/>
+            <field name="res_field">pdf_attachment_id</field>
+            <field name="type">binary</field>
+        </record>
+
+    </data>
+</odoo>

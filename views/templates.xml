@@ -1,0 +1,58 @@
+<odoo>
+    <template id="index" name="QWeb Tutorial Home">
+        <t t-call="web.layout">
+            <div class="oe_structure">
+                <h1>QWeb Tutorial</h1>
+                <form id="renderForm" action="/qweb_tutorial/render" method="post" target="_blank">
+                    <div class="form-group">
+                        <label for="model_name">Model Name</label>
+                        <input type="text" name="model_name" class="form-control" id="model_name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="template_code">QWeb Template Code</label>
+                        <textarea name="template_code" class="form-control" id="template_code" rows="10"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Render</button>
+                </form>
+            </div>
+        </t>
+        <script>
+            document.getElementById('renderForm').onsubmit = function() {
+                var form = document.getElementById('renderForm');
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', form.action, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var newWindow = window.open();
+                        newWindow.document.write(xhr.responseText);
+                    }
+                };
+                xhr.send(formData);
+                return false;
+            };
+        </script>
+    </template>
+
+    <template id="result" name="QWeb Render Result">
+        <t t-call="web.layout">
+            <div class="oe_structure">
+                <h1>Rendered Result</h1>
+                <form action="/qweb_tutorial/render" method="post" target="_blank">
+                    <div class="form-group">
+                        <label for="model_name">Model Name</label>
+                        <input type="text" name="model_name" class="form-control" id="model_name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="template_code">QWeb Template Code</label>
+                        <textarea name="template_code" class="form-control" id="template_code" rows="10"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Render</button>
+                </form>
+                <div id="rendered_result">
+                    <t t-raw="rendered_html"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
